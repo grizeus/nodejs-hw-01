@@ -15,11 +15,10 @@ const generateContacts = async (number) => {
       dataArray = [];
     }
 
-    for (let i = 0; i < number; i++) {
-      dataArray.push(createFakeContact());
-    }
+    const newDataArray = Array(number).fill(createFakeContact());
+    const updatedDataArray = [...dataArray, ...newDataArray];
 
-    const updatedJson = JSON.stringify(dataArray, null, 2);
+    const updatedJson = JSON.stringify(updatedDataArray, null, 2);
 
     await writeContacts(updatedJson);
   } catch (e) {
